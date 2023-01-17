@@ -19,6 +19,12 @@ spring:
         # 环境名称。只有环境名称相同的微服务之间才可以相互发现。
         # 可以取值 development, testing, acceptance, production
         environment: production
+    credentials:
+      enabled: true
+      accessKey: ${AK}
+      secretKey: ${SK}
+      cipher: default
+      project: cn-north-4    
       # 注册发现相关配置
       discovery:
         # 注册中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，
@@ -34,10 +40,4 @@ spring:
         # 配置中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，
         # 部署的时候，不用手工修改地址。
         serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
-        serverType: kie
-        # 自定义配置
-        kie:
-          customLabel: ${spring.application.name}
-          customLabelValue: ${INSTANCE_TAG:default}
-        # 自定义配置，使用文本的key/value配置项作为yaml格式配置
-        fileSource: governance.yaml,application.yaml
+        serverType: config-center
